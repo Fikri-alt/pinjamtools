@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Render menyediakan RENDER_EXTERNAL_URL (https) otomatis -
+        // pakai sebagai APP_URL agar route()/asset() menghasilkan link benar.
+        if ($url = env('RENDER_EXTERNAL_URL')) {
+            config(['app.url' => $url]);
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
     }
 }

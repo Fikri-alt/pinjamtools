@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: pinjamtools
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /up
+    autoDeploy: true
+    envVars:
+      - key: APP_NAME
+        value: PinjamTools Corpu
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      # Isi manual di dashboard Render dari: php artisan key:generate --show
+      - key: APP_KEY
+        sync: false
+      - key: DB_CONNECTION
+        value: pgsql
+      # Connection string Postgres Render (otomatis dari database di bawah)
+      - key: DB_URL
+        fromDatabase:
+          name: pinjamtools-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_SECURE_COOKIE
+        value: true
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: info
+      - key: MAIL_MAILER
+        value: log
+
+databases:
+  - name: pinjamtools-db
+    plan: free
