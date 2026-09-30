@@ -47,6 +47,17 @@ return [
             'report' => false,
         ],
 
+        // Disk tanpa symlink: untuk shared hosting tanpa SSH (set FILESYSTEM_DISK=public_direct).
+        // File tersimpan langsung di public/uploads sehingga web-accessible.
+        'public_direct' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/uploads',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

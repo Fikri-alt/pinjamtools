@@ -1,0 +1,10 @@
+# InfinityFree: simpan file ini sebagai htdocs/.htaccess
+# (JANGAN timpa public/.htaccess bawaan Laravel)
+# Meneruskan semua request ke folder public/ Laravel.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Jangan rewrite ulang jika sudah mengarah ke public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

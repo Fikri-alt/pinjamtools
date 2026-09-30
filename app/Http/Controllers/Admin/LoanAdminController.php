@@ -195,7 +195,7 @@ class LoanAdminController extends Controller
 
         $fotoPath = $loan->handover_foto;
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('handover', 'public');
+            $fotoPath = $request->file('foto')->store('handover');
         }
 
         DB::transaction(function () use ($loan, $validated, $fotoPath) {
@@ -252,7 +252,7 @@ class LoanAdminController extends Controller
 
         $fotoPath = $loan->return_foto;
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('returns', 'public');
+            $fotoPath = $request->file('foto')->store('returns');
         }
 
         $terlambat = Carbon::parse($validated['tgl_kembali_aktual'])->gt(Carbon::parse($loan->tgl_rencana_kembali));
@@ -351,7 +351,7 @@ class LoanAdminController extends Controller
 
         $fotoPath = null;
         if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('handover', 'public');
+            $fotoPath = $request->file('foto')->store('handover');
         }
 
         $kode = $this->generateKode();

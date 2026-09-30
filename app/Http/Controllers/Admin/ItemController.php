@@ -41,7 +41,7 @@ class ItemController extends Controller
         $validated = $this->rules($request);
 
         if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('items', 'public');
+            $validated['foto'] = $request->file('foto')->store('items');
         }
 
         Item::create($validated);
@@ -75,9 +75,9 @@ class ItemController extends Controller
 
         if ($request->hasFile('foto')) {
             if ($item->foto) {
-                Storage::disk('public')->delete($item->foto);
+                Storage::delete($item->foto);
             }
-            $validated['foto'] = $request->file('foto')->store('items', 'public');
+            $validated['foto'] = $request->file('foto')->store('items');
         }
 
         $item->update($validated);
@@ -98,7 +98,7 @@ class ItemController extends Controller
         }
 
         if ($item->foto) {
-            Storage::disk('public')->delete($item->foto);
+            Storage::delete($item->foto);
         }
         $item->delete();
 

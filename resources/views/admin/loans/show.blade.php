@@ -15,8 +15,8 @@
         <p>Aktual kembali: {{ optional($loan->tgl_kembali_aktual)->format('d/m/Y') ?? '-' }}</p>
         <p>Tujuan: {{ $loan->tujuan }}</p>
         @if($loan->rejection_reason)<p class="mt-2 text-red-600">Alasan tolak: {{ $loan->rejection_reason }}</p>@endif
-        @if($loan->handover_foto)<p class="mt-2"><a href="{{ asset('storage/'.$loan->handover_foto) }}" target="_blank" class="text-blue-600 underline">Foto handover</a></p>@endif
-        @if($loan->return_foto)<p><a href="{{ asset('storage/'.$loan->return_foto) }}" target="_blank" class="text-blue-600 underline">Foto return</a></p>@endif
+        @if($loan->handover_foto)<p class="mt-2"><a href="{{ Storage::url($loan->handover_foto) }}" target="_blank" class="text-blue-600 underline">Foto handover</a></p>@endif
+        @if($loan->return_foto)<p><a href="{{ Storage::url($loan->return_foto) }}" target="_blank" class="text-blue-600 underline">Foto return</a></p>@endif
     </div>
     <div class="bg-white rounded shadow p-4 text-sm">
         <h2 class="font-bold mb-2">Barang</h2>

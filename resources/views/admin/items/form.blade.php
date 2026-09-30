@@ -17,7 +17,7 @@
     </div>
     <label class="block">Deskripsi <textarea name="deskripsi" class="border rounded px-3 py-1 w-full">{{ old('deskripsi',$item->deskripsi) }}</textarea></label>
     <label class="block">Foto <input type="file" name="foto" accept="image/*" class="block mt-1"></label>
-    @if($item->foto)<p><a href="{{ asset('storage/'.$item->foto) }}" target="_blank" class="text-blue-600 underline">Lihat foto saat ini</a></p>@endif
+    @if($item->foto)<p><a href="{{ Storage::url($item->foto) }}" target="_blank" class="text-blue-600 underline">Lihat foto saat ini</a></p>@endif
     <button class="bg-slate-900 text-white px-4 py-2 rounded">Simpan</button>
 </form>
 @endsection
